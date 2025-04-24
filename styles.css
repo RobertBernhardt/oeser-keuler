@@ -533,7 +533,8 @@ section:nth-child(even) {
     position: relative;
     overflow: hidden;
     margin-bottom: 2rem;
-    height: 300px;
+    min-height: 300px;
+    height: auto;
 }
 
 .testimonial-slide {
@@ -550,6 +551,7 @@ section:nth-child(even) {
 .testimonial-slide.active {
     opacity: 1;
     z-index: 1;
+    position: relative; /* Change to relative when active to take up space */
 }
 
 .testimonial {
@@ -600,6 +602,7 @@ section:nth-child(even) {
     display: flex;
     justify-content: center;
     gap: 0.8rem;
+    margin-bottom: 2rem;
 }
 
 .testimonial-dot {
@@ -614,6 +617,19 @@ section:nth-child(even) {
 
 .testimonial-dot.active {
     background-color: var(--primary-color);
+}
+
+.view-more-reviews {
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.view-more-reviews .btn {
+    padding: 10px 20px;
+}
+
+.view-more-reviews .btn i {
+    margin-right: 8px;
 }
 
 /* ======= CONTACT SECTION ======= */
@@ -973,7 +989,6 @@ footer {
     
     .hero-text h1 {
         font-size: 2.5rem;
-        margin-top: 2rem
     }
     
     .hero-text h2 {

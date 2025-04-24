@@ -50,8 +50,22 @@ document.addEventListener('DOMContentLoaded', function() {
     // Testimonial carousel
     const testimonialSlides = document.querySelectorAll('.testimonial-slide');
     const testimonialDots = document.querySelectorAll('.testimonial-dot');
+    const testimonialCarousel = document.querySelector('.testimonials-carousel');
     
     if (testimonialDots.length > 0 && testimonialSlides.length > 0) {
+        // Adjust carousel height based on active slide
+        function adjustCarouselHeight() {
+            const activeSlide = document.querySelector('.testimonial-slide.active');
+            if (activeSlide) {
+                const activeHeight = activeSlide.offsetHeight;
+                testimonialCarousel.style.height = activeHeight + 'px';
+            }
+        }
+        
+        // Initial height adjustment
+        window.addEventListener('load', adjustCarouselHeight);
+        window.addEventListener('resize', adjustCarouselHeight);
+        
         testimonialDots.forEach((dot, index) => {
             dot.addEventListener('click', function() {
                 // Remove active class from all slides and dots
@@ -65,6 +79,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Add active class to current slide and dot
                 testimonialSlides[index].classList.add('active');
                 this.classList.add('active');
+                
+                // Adjust height after changing slides
+                setTimeout(adjustCarouselHeight, 100);
             });
         });
         
@@ -83,10 +100,13 @@ document.addEventListener('DOMContentLoaded', function() {
             
             testimonialSlides[currentTestimonialIndex].classList.add('active');
             testimonialDots[currentTestimonialIndex].classList.add('active');
+            
+            // Adjust height after changing slides
+            setTimeout(adjustCarouselHeight, 100);
         }
         
         // Start the auto rotation
-        const testimonialInterval = setInterval(rotateTestimonials, 5000);
+        const testimonialInterval = setInterval(rotateTestimonials, 7000);
         
         // Pause auto rotation when user interacts with testimonials
         testimonialDots.forEach(dot => {
